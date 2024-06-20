@@ -136,6 +136,7 @@ platform-jdk-temurin-jdk-17-latest:
   stash:
     runtimeStash: true
   withNpm: true
+  jdkVersion: 'jdk-17-latest'
   podSpec:
     cpu: 4
     image: 'maven:3.8.5-eclipse-temurin-17'
@@ -145,6 +146,7 @@ platform-jdk-temurin-jdk-21-latest:
   stash:
     runtimeStash: true
   withNpm: true
+  jdkVersion: 'jdk-21-latest'
   podSpec:
     cpu: 4
     image: 'maven:3.9.7-eclipse-temurin-21'
@@ -167,6 +169,7 @@ platform-jdk-temurin-jdk-11-latest:
   stash:
     runtimeStash: true
   withNpm: true
+  jdkVersion: 'jdk-11-latest'
   podSpec:
     cpu: 4
     image: 'maven:3.8.5-eclipse-temurin-11'
