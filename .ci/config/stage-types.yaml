@@ -140,6 +140,16 @@ platform-jdk-temurin-jdk-17-latest:
   podSpec:
     cpu: 4
     image: 'maven:3.8.5-eclipse-temurin-17'
+platform-jdk-temurin-jdk-21-latest:
+  directory: '.'
+  command: 'install source:jar source:test-jar -Pdistro,distro-ce,distro-wildfly'
+  stash:
+    runtimeStash: true
+  withNpm: true
+  jdkVersion: 'jdk-21-latest'
+  podSpec:
+    cpu: 4
+    image: 'maven:3.9.7-eclipse-temurin-21'
 platform-jdk-temurin-jdk-11-latest:
   directory: '.'
   command: 'install source:jar source:test-jar
