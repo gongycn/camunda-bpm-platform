@@ -6,6 +6,86 @@ def failedStageTypes = []
 
 pipeline {
   agent {
+    kubernetes {
+    yaml '''
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  labels:
+    agent: "ap7-ci-build-experiment"
+  namespace: "cambpm"
+spec:
+  containers:
+  - args:
+      - "99d"
+    command:
+      - "sleep"
+    env:
+    - name: "TZ"
+      value: "Europe/Berlin"
+    image: "maven:3.8.5-eclipse-temurin-11"
+    imagePullPolicy: "IfNotPresent"
+    name: "container-intermediate-pr-4139-37-jdk-11-latest"
+    resources:
+      limits:
+        memory: "60Gi"
+        cpu: "3000m"
+      requests:
+        memory: "60Gi"
+        cpu: "3000m"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  - args:
+      - "99d"
+    command:
+      - "sleep"
+    env:
+    - name: "TZ"
+      value: "Europe/Berlin"
+    image: "maven:3.8.5-eclipse-temurin-17"
+    imagePullPolicy: "IfNotPresent"
+    name: "container-intermediate-pr-4139-37-jdk-17-latest"
+    resources:
+      limits:
+        memory: "60Gi"
+        cpu: "3000m"
+      requests:
+        memory: "60Gi"
+        cpu: "3000m"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  - args:
+      - "99d"
+    command:
+      - "sleep"
+    env:
+    - name: "TZ"
+      value: "Europe/Berlin"
+    image: "maven:3.9.7-eclipse-temurin-21"
+    imagePullPolicy: "IfNotPresent"
+    name: "container-intermediate-pr-4139-37-jdk-21-latest"
+    resources:
+      limits:
+        memory: "60Gi"
+        cpu: "3000m"
+      requests:
+        memory: "60Gi"
+        cpu: "3000m"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+      '''
+    retries 2
+    }
     node {
       label 'jenkins-job-runner'
     }
