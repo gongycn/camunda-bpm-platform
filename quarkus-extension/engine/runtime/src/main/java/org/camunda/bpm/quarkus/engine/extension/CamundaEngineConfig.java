@@ -16,6 +16,7 @@
  */
 package org.camunda.bpm.quarkus.engine.extension;
 
+import io.smallrye.config.ConfigMapping;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 
 @ConfigRoot(phase = ConfigPhase.RUN_TIME, name = "camunda")
+@ConfigMapping(prefix = "quarkus")
 public class CamundaEngineConfig {
 
   /**
